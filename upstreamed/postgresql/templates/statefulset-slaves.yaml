@@ -180,12 +180,9 @@ spec:
         storageClassName: "{{ .Values.persistence.storageClass }}"
       {{- end }}
       {{- end }}
-        # selector:
-        #   matchLabels:
-        #     type: postgres
       {{- with .Values.persistence.selector }}
         selector:
-          {{ toYaml .  }}
+          {{ toYaml . | nindent 10}}
       {{- end }}
 {{- else }}
         - name: data
