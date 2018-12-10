@@ -251,6 +251,13 @@ spec:
         storageClassName: "{{ .Values.persistence.storageClass }}"
       {{- end }}
       {{- end }}
+        # selector:
+        #   matchLabels:
+        #     type: postgres
+      {{- with .Values.persistence.selector }}
+        selector:
+          {{ toYaml . }}
+      {{- end }}
 {{- else }}
       - name: data
         emptyDir: {}
